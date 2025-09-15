@@ -29,9 +29,9 @@
                 "PairedDataset"
             ],
             "args": {
-                "low_light_root": "
+                "low_light_root": "/content/cvccolondbsplit/train/low"
 {
-    "name": "deault",
+    "name": "default",
     "model": {
         "which_model": {
             "name": [
@@ -52,7 +52,7 @@
     },
     "train": {
         "device": "cuda",
-        "n_epoch": 80,
+        "n_epoch": 100,
         "lr": 1e-3,
         "dataset": {
             "name": [
@@ -60,14 +60,14 @@
                 "PairedDataset"
             ],
             "args": {
-                "low_light_root": "/content/cvccolondbsplit/val/low", 
-                "normal_light_root": "/content/cvccolondbsplit/val/high"
+                "low_light_root": "/content/cvccolondbsplit/train/low", 
+                "normal_light_root": "/content/cvccolondbsplit/train/high"
             }
         },
         "dataloader": {
             "args": {
                 "batch_size": 8,
-                "shuffle": "False",
+                "shuffle": "True",
                 "num_workers": 2
             }
         },
