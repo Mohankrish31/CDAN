@@ -1,0 +1,100 @@
+{
+    "name": "default",
+    "model": {
+        "which_model": {
+            "name": [
+                "models.model",
+                "Model"
+            ],
+            "args": {}
+        },
+        "networks": [
+            {
+                "name": [
+                    "models.cdan",
+                    "CDAN"
+                ],
+                "args": {}
+            }
+        ]
+    },
+    "train": {
+        "device": "cpu",
+        "n_epoch": 100,
+        "lr": 1e-3,
+        "dataset": {
+            "name": [
+                "data.dataset",
+                "PairedDataset"
+            ],
+            "args": {
+                "low_light_root": "
+{
+    "name": "default",
+    "model": {
+        "which_model": {
+            "name": [
+                "models.model",
+                "Model"
+            ],
+            "args": {}
+        },
+        "networks": [
+            {
+                "name": [
+                    "models.cdan",
+                    "CDAN"
+                ],
+                "args": {}
+            }
+        ]
+    },
+    "train": {
+        "device": "cpu",
+        "n_epoch": 100,
+        "lr": 1e-3,
+        "dataset": {
+            "name": [
+                "data.dataset",
+                "PairedDataset"
+            ],
+            "args": {
+                "low_light_root": "/content/cvccolondbsplit/val/low", 
+                "normal_light_root": "/content/cvccolondbsplit/val/high"
+            }
+        },
+        "dataloader": {
+            "args": {
+                "batch_size": 8,
+                "shuffle": "False",
+                "num_workers": 2
+            }
+        },
+        "model_path": "saved_models/",
+        "model_name": "CDAN.pt"
+    },
+    "test": {
+        "device": "cpu",
+        "dataset": {
+            "name": [
+                "data.dataset",
+                "UnpairedDataset"
+            ],
+            "args": {
+                "low_light_root": "/content/cvccolondbsplit/val/low"
+            },
+            "is_dataset_paired": "False"
+        },
+        "dataloader": {
+            "args": {
+                "batch_size": 8,
+                "shuffle": "False",
+                "num_workers": 2
+            }
+        },
+        "apply_post_processing": "True",
+        "model_path": "saved_models/",
+        "model_name": "CDAN.pt",
+        "output_images_path": "test_images/"
+    }
+}
