@@ -28,7 +28,7 @@
                 "PairedDataset"
             ],
             "args": {
-                "low_light_root": "
+                "low_light_root": "/content/cvccolondbsplit/test/low"
 {
     "name": "default",
     "model": {
@@ -59,8 +59,8 @@
                 "PairedDataset"
             ],
             "args": {
-                "low_light_root": "/content/cvccolondbsplit/val/low", 
-                "normal_light_root": "/content/cvccolondbsplit/val/high"
+                "low_light_root": "/content/cvccolondbsplit/test/low", 
+                "normal_light_root": "/content/cvccolondbsplit/test/high"
             }
         },
         "dataloader": {
@@ -81,7 +81,7 @@
                 "UnpairedDataset"
             ],
             "args": {
-                "low_light_root": "/content/cvccolondbsplit/val/low"
+                "low_light_root": "/content/cvccolondbsplit/test/low"
             },
             "is_dataset_paired": "False"
         },
