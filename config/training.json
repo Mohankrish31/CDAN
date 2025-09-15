@@ -82,7 +82,7 @@
                 "UnpairedDataset"
             ],
             "args": {
-                "low_light_root": "/content/cvccolondbsplit/val/low"
+                "low_light_root": "/content/cvccolondbsplit/train/low"
             },
             "is_dataset_paired": "False"
         },
