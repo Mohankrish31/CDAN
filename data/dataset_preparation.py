@@ -44,10 +44,10 @@ def simulate_endoscopic_degradation(image_rgb, brightness_range=(0.6, 0.9),
     degraded_image[..., 2] *= blue_scale  # B
     degraded_image = np.clip(degraded_image, 0, 255).astype(np.uint8)
     return degraded_image
-def prepare_dataset(input_dir, output_dir, val_ratio=0.1, test_ratio=0.2):
+def prepare_dataset(input_dir, output_dir, val_ratio=0.1, test_ratio=0.2, resize=(224, 224)):
     """
-    Prepares a low-light dataset by splitting a directory of high-res images
-    and applying a custom degradation function. Saves images in original size.
+    Prepares a low-light dataset by splitting a directory of high-res images,
+    applying a custom degradation function, and saving resized images.
     """
     print(f"Input directory: {input_dir}")
     image_list = [f for f in os.listdir(input_dir) if f.lower().endswith(('.png', '.jpg', '.jpeg'))]
@@ -71,13 +71,16 @@ def prepare_dataset(input_dir, output_dir, val_ratio=0.1, test_ratio=0.2):
             if image is None:
                 print(f"Skipping unreadable image: {fname}")
                 continue
-            # Convert BGR → RGB and keep original size
+            # Convert BGR → RGB
             rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
             degraded_img = simulate_endoscopic_degradation(rgb_image)
-            # Save GT (high) and degraded (low)
-            Image.fromarray(rgb_image).save(os.path.join(high_dir, fname))
-            Image.fromarray(degraded_img).save(os.path.join(low_dir, fname))
-    print("\n✅ Dataset preparation complete. Images saved in original size, RGB format.")
+            # Convert to PIL for resizing
+            rgb_pil = Image.fromarray(rgb_image).resize(resize, Image.BICUBIC)
+            degraded_pil = Image.fromarray(degraded_img).resize(resize, Image.BICUBIC)
+            # Save resized GT (high) and degraded (low)
+            rgb_pil.save(os.path.join(high_dir, fname))
+            degraded_pil.save(os.path.join(low_dir, fname))
+    print("\n✅ Dataset preparation complete. All images saved at", resize, "resolution.")
 if __name__ == "__main__":
     original_dataset_path = "/content/cvccolondb/data/train/images"  # change to your source path
     output_dataset_path = "/content/cvccolondbsplit"                  # where to save train/val/test
@@ -85,5 +88,6 @@ if __name__ == "__main__":
         input_dir=original_dataset_path,
         output_dir=output_dataset_path,
         val_ratio=0.1,
-        test_ratio=0.2
+        test_ratio=0.2,
+        resize=(224, 224)   # <-- Resizing here
     )
