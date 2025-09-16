@@ -1,0 +1,13 @@
+torch>=1.10
+torchvision>=0.11
+torchmetrics
+lpips>=0.1.4
+numpy>=1.19
+Pillow>=8.0
+opencv-contrib-python
+albumentations
+optuna
+python-decouple
+tqdm>=4.60
+matplotlib>=3.3
+scikit-image
