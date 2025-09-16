@@ -51,7 +51,7 @@
             ],
             "args": {
                 "low_light_root": "/content/cvccolondbsplit/test/low",
-                "normal_light_root": "/content/cvccolondbsplit/test/high"
+                "image_size": [224,224]
             },
             "is_dataset_paired": false
         },
