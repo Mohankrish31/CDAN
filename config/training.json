@@ -1,4 +1,3 @@
-
 {
     "name": "default",
     "model": {
@@ -29,45 +28,14 @@
                 "PairedDataset"
             ],
             "args": {
-                "low_light_root": "/content/cvccolondbsplit/train/low"
-{
-    "name": "default",
-    "model": {
-        "which_model": {
-            "name": [
-                "models.model",
-                "Model"
-            ],
-            "args": {}
-        },
-        "networks": [
-            {
-                "name": [
-                    "models.cdan",
-                    "CDAN"
-                ],
-                "args": {}
-            }
-        ]
-    },
-    "train": {
-        "device": "cuda",
-        "n_epoch": 100,
-        "lr": 1e-3,
-        "dataset": {
-            "name": [
-                "data.dataset",
-                "PairedDataset"
-            ],
-            "args": {
-                "low_light_root": "/content/cvccolondbsplit/train/low", 
+                "low_light_root": "/content/cvccolondbsplit/train/low",
                 "normal_light_root": "/content/cvccolondbsplit/train/high"
             }
         },
         "dataloader": {
             "args": {
                 "batch_size": 8,
-                "shuffle": "True",
+                "shuffle": true,
                 "num_workers": 2
             }
         },
@@ -82,18 +50,19 @@
                 "UnpairedDataset"
             ],
             "args": {
-                "low_light_root": "/content/cvccolondbsplit/train/low"
+                "low_light_root": "/content/cvccolondbsplit/test/low",
+                "normal_light_root": "/content/cvccolondbsplit/test/high"
             },
-            "is_dataset_paired": "False"
+            "is_dataset_paired": false
         },
         "dataloader": {
             "args": {
                 "batch_size": 8,
-                "shuffle": "False",
+                "shuffle": false,
                 "num_workers": 2
             }
         },
-        "apply_post_processing": "True",
+        "apply_post_processing": true,
         "model_path": "saved_models/",
         "model_name": "CDAN.pt",
         "output_images_path": "train_images/"
